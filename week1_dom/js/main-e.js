@@ -69,34 +69,23 @@ const picArray = [
   },
 ];
 
-//generatePicArray();
 populateWithImages();
 
-function generatePicArray() {
-  for (let i = 1; i < 10; i++) {
-    picArray.push({
-      title: "Title" + i,
-      caption: "Caption" + i,
-      description: "Description" + i,
-      filename: "img/pic" + i + ".jpg",
-    });
-  }
-}
 
 function populateWithImages() {
-  picArray.forEach((pic) => {
-    console.log(pic.filename);
+  for (let i = 0; i < picArray.length; i++) {
+    console.log(picArray[i].filename);
     const html = `<article>
             <header>
-                <h2>${pic.title}</h2>
+                <h2>${picArray[i].title}</h2>
             </header>
             <figure>
-                <img src="${pic.filename}" alt="title">
-                <figcaption>${pic.caption}</figcaption>
+                <img src="${picArray[i].filename}" alt="title">
+                <figcaption>${picArray[i].caption}</figcaption>
             </figure>
-            <p>${pic.description}</p>
+            <p>${picArray[i].description}</p>
         </article>\
                     `;
     main.innerHTML += html;
-  })
+  }
 }

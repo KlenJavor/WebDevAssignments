@@ -1,31 +1,22 @@
 "use strict";
 const main = document.querySelector("main");
 
-// <Header>
 const heading = document.createElement("h2");
-heading.innerHTML = "Article header";
-
 const header = document.createElement("header");
-header.appendChild(heading);
-
-// <p>
 const paragraph = document.createElement("p");
+const img = document.createElement("img");
+const caption = document.createElement("figcaption");
+const figure = document.createElement("figure");
+const article = document.createElement("article");
+
+heading.innerHTML = "Article header 2";
 paragraph.innerHTML =
   "Here is some text. Here is some text. Here is some text. Here is some text.";
+img.src = "http://placekitten.com/322/160";
+img.alt = "title 2";
+caption.innerHTML = "Caption 2";
 
-// <figure>
-const img = document.createElement("img");
-img.src = "http://placekitten.com/320/160";
-img.alt = "title";
-
-const caption = document.createElement("figcaption");
-caption.innerHTML = "Caption";
-
-const figure = document.createElement("figure");
+header.appendChild(heading);
 figure.append(img, caption);
-
-//<Article>
-const article = document.createElement("article");
 article.append(header, figure, paragraph);
-
 main.appendChild(article);
