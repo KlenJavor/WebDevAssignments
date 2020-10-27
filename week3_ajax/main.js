@@ -13,7 +13,7 @@ let link;
 form.addEventListener("submit", (evt) => {
   evt.preventDefault();
   console.log(input.value);
-  doFetch3();
+  doFetch1();
 });
 
 // async/await
