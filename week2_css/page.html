@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Simple CSS excercise</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="content">
+      <header class="relative" id="home">
+        <div>
+          <img class="topimage" srcset="./images/sky.png" alt="See and sailboat" />
+          <nav class="bar white padding " style="letter-spacing: 4px">
+            <a href="#about" class="bar-item button large">Link1</a>
+            <a href="#menu" class="bar-item button large">Link2</a>
+            <a href="#contact" class="bar-item button large">Link3</a>
+          </nav>
+        </div>
+      </header>
+
+      <hr />
+
+      <section id="about">
+        <div>
+          <div class="col padding-large large ">
+            <img
+              src="./images/fish.png"
+              class="image hide-small"
+              alt="Table Setting"
+              width="600"
+              height="750"
+            />
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+              sodales eu massa non semper. Donec pretium ante purus, a tincidunt
+              lectus mollis in. Aenean tempus non justo quis fringilla. Donec
+              nibh tellus, ornare et facilisis eget, rhoncus non lorem. Quisque
+              dolor eros, fringilla non libero vitae, tincidunt maximus diam.
+              Donec sed mi neque. Sed neque metus, pellentesque et congue id,
+              imperdiet nec nisi. Etiam dui ex, pellentesque vitae varius id,
+              tincidunt vel risus. Proin in velit vel leo iaculis efficitur.
+              Phasellus sit amet massa id eros mollis accumsan. Sed mauris
+              ligula, finibus eget dui at, auctor placerat dolor. Maecenas id
+              sapien vel risus maximus suscipit.
+            </p>
+            <h3>Sovelluskehitys on:</h3>
+            <ul>
+              <li class="green">Hauskaa</li>
+              <li class="red">Vaikeaa</li>
+              <li class="italic">En kommentoi</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr />
+
+      <section id="menu">
+        <div class="row padding-32">
+          <div class="col padding-large">
+            <h4 class="large">What can you find here</h4>
+            <ul class="text-grey large">
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li>Nunc ultrices eros eget tristique dignissim.</li>
+              <li>
+                Mauris hendrerit sapien quis arcu vestibulum, et finibus nisi
+                tincidunt.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr />
+
+      <section id="contact">
+        <div class="row padding-32">
+          <div class="col padding-large">
+            <h4 class="large">
+              Come to visit us at Karamalmi 2 once covid is over.
+            </h4>
+          </div>
+        </div>
+      </section>
+
+      <footer class="center light-grey padding-32 large">
+        <p>Footer</p>
+      </footer>
+    </div>
+  </body>
+</html>
