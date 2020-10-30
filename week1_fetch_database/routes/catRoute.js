@@ -1,11 +1,11 @@
 "use strict";
 // catRoute
 const express = require("express");
-const multer = require("multer")
+const multer = require("multer");
 const router = express.Router();
 const catController = require("../controllers/catController");
-const upload = multer({dest: 'uploads/'})
-router.get("/", catController.cat_list_get);
+const upload = multer({ dest: "uploads/" });
+
 
 /*
 router.get("/", (req, res) => {
@@ -19,12 +19,18 @@ router.get("/:id", (req, res) => {
   );
 });
 */
-
+router.get("/", catController.cat_list_get);
 router.get("/:id", catController.cat_get_by_id);
 
-router.post("/", upload.single('cat'), (req, res) => {
+router.post("/", upload.single("cat"), catController.cat_create);
+router.put("/:id", catController.cat_update);
+//router.delete("/:id", catController.cat_delete);
+
+/*router.post("/", upload.single('cat'), (req, res) => {
   console.log("catRoute", req.body, req.file);
   res.send('trying to add a cat...')
-});
+});*/
+
+router.post("/", upload.single("cat"), catController.cat_create);
 
 module.exports = router;

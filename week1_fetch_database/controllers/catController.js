@@ -25,13 +25,26 @@ const cat_get_by_id = async (req, res) => {
   res.json(cat);
 };
 
-const cat_create = (req, res) => {
+const cat_create = async (req, res) => {
   //here we will create a cat with data coming from req...
-  res.json(`cat created with id: ${res} `);
+  console.log("catController cat_create", req.body, req.file);
+  const cat = await catModel.getCat(await catModel.insertCat(req));
+  res.send(cat);
 };
+
+const cat_update = async (req, res) => {
+  const updateOk = await catModel.updateCat(req.prans.id, req);
+  res.send(`updated...${updateOk}`);
+};
+
+/*const cat_delete = async (req, res) => {
+    res.send(`deleted...`);
+};*/
 
 module.exports = {
   cat_list_get,
   cat_get_by_id,
   cat_create,
+  cat_update,
+  //cat_delete
 };
