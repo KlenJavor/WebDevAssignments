@@ -1,5 +1,5 @@
 "use strict";
-const main = document.querySelector("main");
+const results = document.querySelector("results");
 const form = document.querySelector("#search-form");
 const input = document.querySelector("[name=search-field]");
 const state = document.querySelector("h3");
@@ -68,7 +68,11 @@ function doFetch3() {
   console.log("got here");
 }
 
+// adds search results to html
 function publish(data) {
+  const empty = `<h2></h2>`;
+  results.innerHTML = empty;
+
   data.forEach((movie) => {
     !movie.show.image
       ? (image = "default.png")
@@ -82,6 +86,8 @@ function publish(data) {
     !movie.show.genres ? (genres = "") : (genres = movie.show.genres);
     !movie.show.url ? (link = "") : (link = movie.show.url);
 
+    console.log(movie.show.name);
+
     const html = `<hr>
         <article>
             <header>
@@ -94,6 +100,7 @@ function publish(data) {
             <p>${movie.show.summary}</p>
             <a href=${link}>${link}</>
         </article>`;
-    main.innerHTML += html;
+
+    results.innerHTML += html;
   });
 }
