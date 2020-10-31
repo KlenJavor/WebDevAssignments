@@ -1,3 +1,15 @@
-# wop-starters
+# Routing, middleware and database connection
 
-Choose a branch and download as zip.
+
+## Assignment
+
+[https://github.com/ilkkamtk/wop/blob/master/week2.md](hhttps://github.com/ilkkamtk/wop/blob/master/week2.md)
+
+
+## About
+Get, post, put and delete data from mysql.
+
+Middleware: Express, Multer
+
+## License
+none
