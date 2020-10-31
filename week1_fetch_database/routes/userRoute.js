@@ -1,8 +1,10 @@
 "use strict";
 // userRoute
 const express = require("express");
+const multer = require("multer");
 const router = express.Router();
 const userController = require("../controllers/userController");
+const upload = multer({ dest: "uploads/" });
 
 router.get("/", userController.user_list_get);
 router.post("/", upload.single("user"), userController.user_create);

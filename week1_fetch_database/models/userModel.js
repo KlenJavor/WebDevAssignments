@@ -49,10 +49,10 @@ const updateUser = async (id, req) => {
       "UPDATE wop_user SET name=?, email=?, password=? WHERE user_id = ?;",
       [req.body.name, req.body.email, req.body.passwd, id]
     );
-    console.log("userModel updateCat", rows);
+    console.log("userModel updateUser", rows);
     return rows.affectedRows === 1;
   } catch (e) {
-    console.error("userModel updateCat: ", e);
+    console.error("userModel updateUser: ", e);
     return false;
   }
 };
