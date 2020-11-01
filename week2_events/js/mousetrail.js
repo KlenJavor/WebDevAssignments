@@ -1,22 +1,18 @@
-"use strict";
-const main = document.querySelector("main");
 
-const heading = document.createElement("h2");
-const header = document.createElement("header");
-const paragraph = document.createElement("p");
-const img = document.createElement("img");
-const caption = document.createElement("figcaption");
-const figure = document.createElement("figure");
-const article = document.createElement("article");
+const createTrail = (x, y) => {
+  const trail = document.createElement("div");
+  trail.innerText = "🌟"
+  trail.style.position = "absolute"
+  trail.className = "trail";
+  trail.style.top = y + "px";
+  trail.style.left = x + "px";
+  return trail;
+};
 
-heading.innerHTML = "Article header 2";
-paragraph.innerHTML =
-  "Here is some text. Here is some text. Here is some text. Here is some text.";
-img.src = "http://placekitten.com/322/160";
-img.alt = "title 2";
-caption.innerHTML = "Caption 2";
-
-header.appendChild(heading);
-figure.append(img, caption);
-article.append(header, figure, paragraph);
-main.appendChild(article);
+window.addEventListener("mousemove", (event) => {
+  const trails = document.querySelectorAll(".trail");
+  if (trails.length == 20) trails[0].remove();
+  setTimeout(() => trail.remove(), 300)
+  const trail = createTrail(event.pageX, event.pageY);
+  document.body.appendChild(trail);
+});

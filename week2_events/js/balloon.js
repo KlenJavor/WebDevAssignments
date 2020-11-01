@@ -1,27 +1,23 @@
+let balloon = document.getElementById("balloon");
+balloon.style.fontSize = "20px";
+window.addEventListener("keydown", inflate);
 
-    let balloon = document.getElementById("balloon")
-    balloon.style.fontSize = "20px";
-    window.addEventListener("keydown", blowUp);
-    
-    function blowUp(event) {
-        let number = Number(balloon.style.fontSize.match(/\d+/)[0]);
-        if(event.key == "ArrowUp") {
-            event.preventDefault();
-            number = number + (number * 0.1);
-
-            balloon.style.fontSize = `${number}px`;
-            console.log(`${balloon.style.fontSize}`);
-            console.log(number);
-        }
-        else if(event.key == "ArrowDown") {
-            event.preventDefault();
-            number = number - (number * 0.1);
-            balloon.style.fontSize = number
-            console.log(`${balloon.style.fontSize}`);        
-            }
-        if (number > 40) {
-            balloon.innerHTML= "explodes";
-            window.removeEventListener("keydown", blowUp);
-        }
-
-    }
+function inflate(event) {
+  let number = Number(balloon.style.fontSize.match(/\d+/)[0]);
+  if (event.key == "ArrowDown" && number < 21) {
+    event.preventDefault();
+    balloon.style.fontSize = `${number}px`;
+  } else if (event.key == "ArrowUp") {
+    event.preventDefault();
+    number = 1.1 * number;
+    balloon.style.fontSize = `${number}px`;
+  } else if (event.key == "ArrowDown") {
+    event.preventDefault();
+    number = 0.9 * number;
+    balloon.style.fontSize = `${number}px`;
+  }
+  if (number > 300) {
+    balloon.innerText = "💥";
+    window.removeEventListener("keydown", inflate);
+  }
+}
