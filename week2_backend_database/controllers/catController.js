@@ -1,37 +1,49 @@
 "use strict";
 // catController
-
 const catModel = require("../models/catModel");
+const { validationResult } = require("express-validator");
+
 const cats = catModel.cats;
 
 const cat_list_get = async (req, res) => {
-  console.log("catController cat_list_get", req.body, req.file);
   const cats = await catModel.getAllCats();
   res.json(cats);
 };
 
 const cat_get_by_id = async (req, res) => {
-  console.log("catController cat_get_by_id", req.body, req.file);
+  console.log("catController: http get cat with path param", req.params);
   const cat = await catModel.getCat(req.params.id);
   res.json(cat);
 };
 
 const cat_create = async (req, res) => {
+  //here we will create a cat with data comming from req...
   console.log("catController cat_create", req.body, req.file);
-  const cat = await catModel.getCat(await catModel.insertCat(req));
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log("validation", errors.array());
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const id = await catModel.insertCat(req);
+  const cat = await catModel.getCat(id);
   res.send(cat);
 };
 
 const cat_update = async (req, res) => {
-  console.log("catController cat_update", req.body, req.file);
-  const updateOk = await catModel.updateCat(req.prans.id, req);
-  res.send(`updated...${updateOk}`);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log("validation", errors.array());
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const updateOk = await catModel.updateCat(req);
+  res.json(`{message: "updated... ${updateOk}"}`);
 };
 
 const cat_delete = async (req, res) => {
-  console.log("catController cat_delete", req.body, req.file);
-  const deleteOk = await catModel.deleteCat(req.params.id);
-  res.send(`deleted...${deleteOk}`);
+  console.log("catController: http delete cat with path param", req.params);
+  const cat = await catModel.deleteCat(req.params.id);
+  console.log("kissa", cat);
+  res.json(cat);
 };
 
 module.exports = {
