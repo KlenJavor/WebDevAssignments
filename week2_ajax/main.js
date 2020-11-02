@@ -10,26 +10,30 @@ let image;
 let genres;
 let link;
 
-form.addEventListener("submit", (evt) => {
+form.addEventListener("submit", async (evt) => {
   evt.preventDefault();
-  console.log(input.value);
-  doFetch1();
+  try {
+    console.log(input.value);
+    const data = await doFetch1(
+      `http://api.tvmaze.com/search/shows?q=${input.value}`
+    );
+    publish(data);
+  } catch (err) {
+    console.warn(err.message);
+  }
 });
 
 // async/await
-const doFetch1 = async () => {
+const doFetch1 = async (url) => {
   state.innerText = "Loading movies ...";
   try {
-    const res = await fetch(
-      `http://api.tvmaze.com/search/shows?q=${input.value}`
-    );
-    if (!res.ok) throw new Error("Data not fetched!");
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Something went wrong");
     const data = await res.json();
     state.innerText = "";
-    publish(data);
+    return data;
   } catch (err) {
-    console.warn(err);
-  }
+    throw new Error(err.message);
 };
 
 // fetch/promises
