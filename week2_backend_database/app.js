@@ -14,6 +14,7 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(express.static("uploads"));
+app.use(express.static("week2_public_html"));
 
 // routes
 app.use("/", rootRoute);
