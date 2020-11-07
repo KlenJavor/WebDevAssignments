@@ -5,10 +5,14 @@ const bodyParser = require("body-parser");
 const rootRoute = require("./routes/rootRoute");
 const catRoute = require("./routes/catRoute");
 const userRoute = require("./routes/userRoute");
+const authRoute = require('./routes/authRoute');
+const passport = require('./utils/pass');
 const app = express();
 const port = 3000;
 
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -17,25 +21,8 @@ app.use(express.static("uploads"));
 app.use(express.static("week2_public_html"));
 
 // routes
-app.use("/", rootRoute);
-app.use("/cat", catRoute);
-app.use("/user", userRoute);
+app.use('/auth', authRoute);
+app.use('/cat', passport.authenticate('jwt', {session: false}), catRoute);
+app.use('/user', passport.authenticate('jwt', {session: false}), userRoute);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
-// learning map, filter, reduce
-/*
-const myArr = [3, 2, 5, 67, 54, 33, 22];
-const mapArr = myArr.map((i) => i * 3);
-const filterArr = myArr.filter((i) => i > 10);
-const reduceArr = myArr.reduce((acumulator, i) => (acumulator += i));
-console.log(
-  "original",
-  myArr,
-  "\nmap",
-  mapArr,
-  "\nfilter",
-  filterArr,
-  "\nreduce",
-  reduceArr
-);*/
