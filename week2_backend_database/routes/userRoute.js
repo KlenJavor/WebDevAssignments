@@ -11,10 +11,9 @@ router.post(
   [
     body("name", "Name must have at least 3 letters").isLength({ min: 3 }),
     body("email", "Please add a valid e-mail").isEmail(),
-    body(
-      "passwd",
-      "Minimum 8 characters, at least one upper case"
-    ).matches("(?=.*[A-Z]).{8,}"),
+    body("passwd", "Minimum 8 characters, at least one upper case").matches(
+      "(?=.*[A-Z]).{8,}"
+    ),
   ],
   userController.user_create
 );

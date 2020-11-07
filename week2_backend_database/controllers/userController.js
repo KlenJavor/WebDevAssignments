@@ -16,14 +16,11 @@ const user_get_by_id = async (req, res) => {
 
 const user_create = async (req, res) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty())
-    return {error: errors.array()};
+  if (!errors.isEmpty()) return { error: errors.array() };
 
   const result = await userModel.insertUser(req);
-  if (result['error'])
-    res.status(400).json(result);
-  else
-    res.json(result);
+  if (result["error"]) res.status(400).json(result);
+  else res.json(result);
 };
 
 const user_update = async (req, res) => {
