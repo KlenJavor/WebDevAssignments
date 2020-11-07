@@ -2,7 +2,6 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const rootRoute = require("./routes/rootRoute");
 const catRoute = require("./routes/catRoute");
 const userRoute = require("./routes/userRoute");
 const authRoute = require('./routes/authRoute');
