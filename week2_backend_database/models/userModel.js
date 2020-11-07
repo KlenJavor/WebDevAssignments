@@ -25,15 +25,17 @@ const getUser = async (id) => {
   }
 };
 
-
 const insertUser = async (req) => {
   try {
-    const [status] = await promisePool.execute(
-        'INSERT INTO wop_user(name, email, password) VALUES(?, ?, ?)',
-        [req.body.name, req.body.email, req.body.passwd]);
-    return await getUser(status['insertId']);
+    const [
+      status,
+    ] = await promisePool.execute(
+      "INSERT INTO wop_user(name, email, password) VALUES(?, ?, ?)",
+      [req.body.name, req.body.email, req.body.passwd]
+    );
+    return await getUser(status["insertId"]);
   } catch (e) {
-    return {error: e.message};
+    return { error: e.message };
   }
 };
 
@@ -65,10 +67,24 @@ const deleteUser = async (id) => {
   }
 };
 
+const getUserLogin = async (params) => {
+  try {
+    console.log(params);
+    const [rows] = await promisePool.execute(
+      "SELECT * FROM wop_user WHERE email = ?;",
+      params
+    );
+    return rows;
+  } catch (e) {
+    console.log("error", e.message);
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUser,
   insertUser,
   updateUser,
   deleteUser,
+  getUserLogin,
 };
