@@ -1,12 +1,13 @@
 # App for picture + metadata uploading with mySQL database
 
-# Routing, database connection
+Routing, database connection
 
-# Data Validation
+Data Validation
 
-# Authentication with passport.js
+Authentication with passport.js
 
-# JSON Web Token Strategy
+JSON Web Token Strategy
+
 
 ## Assignment
 
