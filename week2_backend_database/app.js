@@ -6,9 +6,11 @@ const catRoute = require("./routes/catRoute");
 const userRoute = require("./routes/userRoute");
 const authRoute = require("./routes/authRoute");
 const passport = require("./utils/pass");
+
 const app = express();
 const port = 3000;
 
+app.use('/thumbnails', express.static('thumbnails'));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
