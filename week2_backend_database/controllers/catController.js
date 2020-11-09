@@ -18,9 +18,17 @@ const cat_get_by_id = async (req, res) => {
 };
 
 const cat_make_thumbnail = async () => {
-  const ready = await makeThumbnail(req.file.path, req.file.filename);
-  if (ready) {
-    console.log("make_thumbnail", ready);
+  try {
+    const ready = await makeThumbnail(
+      { width: 160, height: 160 },
+      req.file.path,
+      req.file.filename
+    );
+    if (ready) {
+      console.log("make_thumbnail", ready);
+      next();
+    }
+  } catch (e) {
     next();
   }
 };
@@ -62,5 +70,5 @@ module.exports = {
   cat_create,
   cat_update,
   cat_delete,
-  cat_make_thumbnail
+  cat_make_thumbnail,
 };
