@@ -41,7 +41,7 @@ const insertCat = async (req, coords) => {
         req.body.weight,
         req.body.owner,
         req.file.filename,
-        coords,
+        req.body.coords,
       ]
     );
     console.log("catModel insert:", rows);

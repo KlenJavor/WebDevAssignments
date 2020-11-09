@@ -2,7 +2,8 @@
 // catController
 const catModel = require("../models/catModel");
 const { validationResult } = require("express-validator");
-const { makeThumbnail } = require("../utils/resize").makeThumbnail;
+const { makeThumbnail } = require("../utils/resize");
+const {getCoordinates} = require('../utils/imageMeta');
 
 const cats = catModel.cats;
 
@@ -17,7 +18,7 @@ const cat_get_by_id = async (req, res) => {
   res.json(cat);
 };
 
-const cat_make_thumbnail = async () => {
+const cat_make_thumbnail = async (req, res, next) => {
   try {
     const ready = await makeThumbnail(
       { width: 160, height: 160 },
@@ -41,6 +42,11 @@ const cat_create = async (req, res) => {
     console.log("validation", errors.array());
     return res.status(400).json({ errors: errors.array() });
   }
+
+  // get gps coordinates from image
+  const coords = await getCoordinates(req.file.path);
+  console.log('coords', coords);
+  req.body.coords = coords;
 
   const id = await catModel.insertCat(req);
   const cat = await catModel.getCat(id);
