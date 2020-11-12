@@ -5,7 +5,6 @@ const getCoordinates = (imgFile) => {
   // imgFile = full path to uploaded image
   return new Promise((resolve, reject) => {
     try {
-      // TODO: Use node-exif to get longitude and latitude from imgFile
       new ExifImage({ image: imgFile }, function (error, exifData) {
         if (error) {
           console.log("Error: " + error.message);
