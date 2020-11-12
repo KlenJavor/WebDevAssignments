@@ -1,11 +1,9 @@
 "use strict";
 // catController
 const catModel = require("../models/catModel");
-const { validationResult } = require("express-validator");
-const { makeThumbnail } = require("../utils/resize");
-const {getCoordinates} = require('../utils/imageMeta');
-
-const cats = catModel.cats;
+const validationResult = require("express-validator");
+const makeThumbnail = require("../utils/resize");
+const getCoordinates = require('../utils/imageMeta');
 
 const cat_list_get = async (req, res) => {
   const cats = await catModel.getAllCats();
@@ -18,15 +16,15 @@ const cat_get_by_id = async (req, res) => {
   res.json(cat);
 };
 
-const cat_make_thumbnail = async (req, res, next) => {
+const cat_make_thumbnail = async (req, next) => {
   try {
-    const ready = await makeThumbnail(
+    const ready = await resize.makeThumbnail(
       { width: 160, height: 160 },
       req.file.path,
-      req.file.filename
+      `./thumbnails/${req.file.filename}`
     );
     if (ready) {
-      console.log("make_thumbnail", ready);
+      console.log("cat_make_thumbnail", ready);
       next();
     }
   } catch (e) {
@@ -66,7 +64,7 @@ const cat_update = async (req, res) => {
 const cat_delete = async (req, res) => {
   console.log("catController: http delete cat with path param", req.params);
   const cat = await catModel.deleteCat(req.params.id);
-  console.log("kissa", cat);
+  console.log("cat_delete", cat);
   res.json(cat);
 };
 
