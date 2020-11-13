@@ -24,7 +24,7 @@ const login = (req, res) => {
 
 const logout = (req, res) => {
   req.logout();
-  res.json({ message: "Logged out successfully" });
+  res.json({ message: "Logged out" });
 };
 
 module.exports = {

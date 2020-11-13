@@ -17,12 +17,11 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ dest: "uploads/", fileFilter });
 
-const injectFile = (req, res, next) => {
+const injectFile = (req, res) => {
   if (req.file) {
     req.body.type = req.file.mimetype;
   }
   console.log("inject", req.body);
-  next();
 };
 
 router.get("/", catController.cat_list_get);

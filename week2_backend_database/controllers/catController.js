@@ -2,7 +2,7 @@
 // catController
 const catModel = require("../models/catModel");
 const validationResult = require("express-validator");
-const makeThumbnail = require("../utils/resize");
+const resize = require("../utils/resize");
 const getCoordinates = require("../utils/imageMeta");
 
 const cat_list_get = async (req, res) => {
