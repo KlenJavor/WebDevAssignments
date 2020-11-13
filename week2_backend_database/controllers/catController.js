@@ -1,9 +1,11 @@
 "use strict";
 // catController
 const catModel = require("../models/catModel");
-const validationResult = require("express-validator");
-const resize = require("../utils/resize");
-const getCoordinates = require("../utils/imageMeta");
+const { validationResult } = require("express-validator");
+const { makeThumbnail } = require("../utils/resize");
+const {getCoordinates} = require('../utils/imageMeta');
+
+const cats = catModel.cats;
 
 const cat_list_get = async (req, res) => {
   const cats = await catModel.getAllCats();
@@ -16,17 +18,20 @@ const cat_get_by_id = async (req, res) => {
   res.json(cat);
 };
 
-const cat_make_thumbnail = async (req) => {
+const cat_make_thumbnail = async (req, res, next) => {
   try {
-    const ready = await resize.makeThumbnail(
+    const ready = await makeThumbnail(
       { width: 160, height: 160 },
       req.file.path,
-      `./thumbnails/${req.file.filename}`
+      req.file.filename
     );
     if (ready) {
-      console.log("cat_make_thumbnail", ready);
+      console.log("make_thumbnail", ready);
+      next();
     }
-  } catch (e) {}
+  } catch (e) {
+    next();
+  }
 };
 
 const cat_create = async (req, res) => {
@@ -40,7 +45,7 @@ const cat_create = async (req, res) => {
 
   // get gps coordinates from image
   const coords = await getCoordinates(req.file.path);
-  console.log("coords", coords);
+  console.log('coords', coords);
   req.body.coords = coords;
 
   const id = await catModel.insertCat(req);
@@ -61,7 +66,7 @@ const cat_update = async (req, res) => {
 const cat_delete = async (req, res) => {
   console.log("catController: http delete cat with path param", req.params);
   const cat = await catModel.deleteCat(req.params.id);
-  console.log("cat_delete", cat);
+  console.log("kissa", cat);
   res.json(cat);
 };
 
