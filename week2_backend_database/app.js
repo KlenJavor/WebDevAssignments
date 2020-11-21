@@ -9,11 +9,18 @@ const passport = require("./utils/pass");
 
 const app = express();
 const port = 3000;
+app.enable("trust proxy");
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
+if (process.env.NODE_ENV === "production") {
+  require("./production")(app, process.env.PORT);
+} else {
+  require("./localhost")(app, process.env.HTTPS_PORT, process.env.HTTP_PORT);
+}
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
