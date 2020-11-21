@@ -28,6 +28,8 @@ app.use(express.static("uploads"));
 app.use(express.static("week2_public_html"));
 
 // routes
+app.use(express.static('public_html'));
+app.use(express.static('uploads'));
 app.use("/auth", authRoute);
 app.use("/cat", passport.authenticate("jwt", { session: false }), catRoute);
 app.use("/user", passport.authenticate("jwt", { session: false }), userRoute);
