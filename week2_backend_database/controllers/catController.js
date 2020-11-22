@@ -20,19 +20,17 @@ const cat_get_by_id = async (req, res) => {
 
 const cat_make_thumbnail = async (req, res, next) => {
   try {
-    const ready = await makeThumbnail(
-      { width: 160, height: 160 },
-      req.file.path,
-      req.file.filename
-    );
+    const ready = await makeThumbnail({width: 160, height: 160}, req.file.path,
+        './thumbnails/' + req.file.filename);
     if (ready) {
-      console.log("make_thumbnail", ready);
+      console.log('make_thumbnail', ready);
       next();
     }
   } catch (e) {
     next();
   }
 };
+
 
 const cat_create = async (req, res) => {
   //here we will create a cat with data comming from req...
