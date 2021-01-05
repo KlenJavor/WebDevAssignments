@@ -1,15 +1,27 @@
-# Routing, middleware and database connection
+# App for picture + metadata uploading with mySQL database
+
+Routing, database connection
+
+Data Validation
+
 
 
 ## Assignment
 
-[https://github.com/ilkkamtk/wop/blob/master/week2.md](hhttps://github.com/ilkkamtk/wop/blob/master/week2.md)
+[https://github.com/ilkkamtk/wop/blob/master/week2.md](https://github.com/ilkkamtk/wop/blob/master/week2.md)
+
+[https://github.com/ilkkamtk/wop/blob/master/week3.md](https://github.com/ilkkamtk/wop/blob/master/week3.md)
 
 
-## About
-Get, post, put and delete data from mysql.
+## Quick start
 
-Middleware: Express, Multer
+add .env with
+DB_HOST=
+DB_USER=
+DB_PASS=
+DB_NAME=
 
-## License
-none
+Change urls and form actions in week2_public_html, both html and js files
+
+npm i
+node app.js &
