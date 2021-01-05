@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS part 3 - flexbox</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Code+Pro"
+    />
+    <link rel="stylesheet" href="puppy.css" />
+  </head>
+  <body>
+    <main class="body-container">
+      <section class="column" id="left">
+        <div class="card">
+          <img src="puppy.png" alt="Koira" />
+          <ion-icon class="caption" name="heart" style="color: red"></ion-icon>
+        </div>
+      </section>
+
+      <section class="column" id="right">
+        <div>
+          <h1>MEDIA SHARING APP</h1>
+        </div>
+        <div class="info">
+          <ol>
+            <li>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed
+              vulputate dolor, ac hendrerit neque. Pellentesque eget purus non
+              nibh blandit venenatis sed eu mi.
+            </li>
+            <li>
+              In hac habitasse platea dictumst. Praesent quis eros in risus
+              iaculis scelerisque. Integer sit amet erat massa. Pellentesque
+              accumsan blandit mattis.
+            </li>
+            <li>
+              <input class="input body" type="search" placeholder="Field" />
+            </li>
+            <li>
+              <button class="button body" type="button">Button</button>
+            </li>
+            <li>
+              Mauris imperdiet vulputate nisl, id rutrum mauris finibus sed.
+              Vivamus eu lobortis libero. Donec id felis eget justo porttitor
+              lacinia eget quis sapien. Cras id pharetra libero.
+            </li>
+          </ol>
+        </div>
+      </section>
+      <div id="seemore">
+        <p>See more puppies for sale</p>
+        <ion-icon
+          name="chevron-down-outline"
+          style="font-size: 24px"
+        ></ion-icon>
+      </div>
+    </main>
+
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+  </body>
+</html>
